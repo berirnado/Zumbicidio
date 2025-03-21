@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.zumbicidiojogo;
+package com.pacotao.models;
 
 /**
  *
@@ -16,7 +16,6 @@ public class Jogador extends Personagem {
         this.percepcao = percepcao;
     }
 
-    @Override
     public void mover(char direcao) {
         // Lógica de movimento do jogador (pode ser controlada pelo usuário)
         switch (direcao) {
