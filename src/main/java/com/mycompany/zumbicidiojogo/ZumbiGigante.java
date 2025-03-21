@@ -8,11 +8,6 @@ package com.mycompany.zumbicidiojogo;
  *
  * @author Bernardo Robaina
  */
-public abstract class Zumbi extends Personagem {
+public class ZumbiGigante {
     
-    public Zumbi(int saude, int x, int y){
-        super(saude, x, y);
-    }
-    
-    public abstract void mover(Personagem personagem);
 }

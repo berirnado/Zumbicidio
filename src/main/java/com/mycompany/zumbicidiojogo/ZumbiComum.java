@@ -8,11 +8,15 @@ package com.mycompany.zumbicidiojogo;
  *
  * @author Bernardo Robaina
  */
-public abstract class Zumbi extends Personagem {
+public class ZumbiComum extends Zumbi {
     
-    public Zumbi(int saude, int x, int y){
-        super(saude, x, y);
+    public ZumbiComum(int x, int y){
+        //Zumbi comum começa com 2 de hp
+        super(2, x, y);
     }
     
-    public abstract void mover(Personagem personagem);
+    @Override
+    public void mover(Personagem personagem){
+        //TODO: Implementar logica de movimentação do zumbi comum
+    }
 }

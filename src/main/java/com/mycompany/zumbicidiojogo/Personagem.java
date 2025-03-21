@@ -29,6 +29,4 @@ public abstract class Personagem {
     public int[] getPosicao(){
         return new int[] {this.x, this.y};
     }
-
-    public abstract void mover(char direcao);
 }
