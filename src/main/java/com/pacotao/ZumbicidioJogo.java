@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 public class ZumbicidioJogo {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Rodando o jogo");
         
         JFrame window = new MainFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

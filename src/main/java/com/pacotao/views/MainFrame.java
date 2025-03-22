@@ -9,34 +9,36 @@ import java.awt.*;
 /**
  *
  * @author Bernardo Robaina
+ * 
+ * ------------- MainFrame que organiza a troca de telas do jogo
  */
+
 public class MainFrame extends JFrame{
+    private CardLayout cardLayout;
+    private JPanel mainPanel;
+    
     public MainFrame(){
         super("Zumbicidio");
         setSize(1040, 720);
-        setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
-        setLayout(new FlowLayout());
-        
-        
-        Container tela = getContentPane();
-        tela.setLayout(new BoxLayout(tela, BoxLayout.Y_AXIS));
-        JLabel label = new JLabel("Zumbicídio");
-        label.setFont(new Font("Seriff", Font.BOLD, 50));
-        label.setLocation(this.getWidth() / 2, this.getHeight() / 2);
-        
-        JButton botaoJogar = new JButton("Jogar");
-        botaoJogar.setSize(20, 70);
-        
-        JPanel botoes = new JPanel();
-        botoes.setLayout(new BoxLayout(botoes, BoxLayout.Y_AXIS));
-        
-        botoes.add(label);
-        botoes.add(botaoJogar);
-        
-        tela.add(label);
-        tela.add(botoes);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Configuração do CardLayout
+        cardLayout = new CardLayout();
+        mainPanel = new JPanel(cardLayout);
+
+        // Adiciona as telas ao CardLayout
+        mainPanel.add(new MenuPanel(this), "Menu");
+        //mainPanel.add(new GamePanel(this), "Game");
+
+        add(mainPanel);
+        this.mostraTela("Menu");
         setVisible(true);
+    }
+    
+    // Método para navegar entre telas
+    public void mostraTela(String nomeTela) {
+        cardLayout.show(mainPanel, nomeTela);
     }
 }
