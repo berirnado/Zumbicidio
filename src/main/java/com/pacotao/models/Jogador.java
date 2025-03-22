@@ -12,7 +12,7 @@ public class Jogador extends Personagem {
     private int percepcao;
     
     public Jogador(int saude, int x, int y, int percepcao) {
-        super(saude, x, y);
+        super("J", "caminhoImagem", saude, x, y);
         this.percepcao = percepcao;
     }
 

@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import com.pacotao.controllers.*;
 /**
  *
  * @author Bernardo Robaina
@@ -18,6 +19,7 @@ import java.awt.event.ActionListener;
 
 public class MenuPanel extends JPanel {
     private static int percepcao;
+    private JogoController jogoController;
     
     public MenuPanel(MainFrame frame) {
         // Painel principal com GridBagLayout para centralizar
@@ -36,7 +38,8 @@ public class MenuPanel extends JPanel {
         JButton botaoJogar = new JButton("Jogar");
         gbc.gridy++;
         add(botaoJogar, gbc);
-        botaoJogar.addActionListener(e -> frame.mostraTela("Game"));
+        jogoController = new JogoController();
+        botaoJogar.addActionListener(e -> jogoController.iniciarJogo(frame, percepcao));
         
         //Botão Debug
         JButton botaoDebug = new JButton("Debug");

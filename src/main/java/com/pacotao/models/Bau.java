@@ -8,11 +8,9 @@ package com.pacotao.models;
  *
  * @author Bernardo Robaina
  */
-public abstract class Zumbi extends Personagem {
-    
-    public Zumbi(int saude, int x, int y){
-        super("Z", "caminhoImagemZumbi", saude, x, y);
+
+public class Bau extends ObjetoMapa{
+    public Bau(int x, int y){
+        super("B", "camihnoImagemBau", x, y);
     }
-    
-    public abstract void mover(Personagem personagem);
 }

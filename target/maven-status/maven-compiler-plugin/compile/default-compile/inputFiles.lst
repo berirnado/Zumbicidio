@@ -1,8 +1,16 @@
+C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\controllers\JogoController.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Arma.java
+C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Bau.java
+C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Celula.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Item.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Jogador.java
+C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Jogo.java
+C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Mapa.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Medicamento.java
+C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\ObjetoMapa.java
+C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Parede.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Personagem.java
+C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Vazio.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\Zumbi.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\ZumbiComum.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\models\ZumbiCorredor.java
@@ -12,4 +20,5 @@ C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\jav
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\views\GamePanel.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\views\MainFrame.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\views\MenuPanel.java
+C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\views\TabuleiroPanel.java
 C:\Users\Bernardo Robaina\Documents\NetBeansProjects\ZumbicidioJogo\src\main\java\com\pacotao\ZumbicidioJogo.java

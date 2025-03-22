@@ -8,14 +8,12 @@ package com.pacotao.models;
  *
  * @author Bernardo Robaina
  */
-public abstract class Personagem {
+public abstract class Personagem extends ObjetoMapa {
     protected int saude; // HP do personagem
-    protected int x, y;  // Posições do personagem no mapa
 
-    public Personagem(int saude, int x, int y) {
+    public Personagem(String simbolo, String caminhoImagem, int saude, int x, int y) {
+        super(simbolo, caminhoImagem, x, y);
         this.saude = saude;
-        this.x = x;
-        this.y = y;
     }
 
     public int getSaude() {
@@ -24,9 +22,5 @@ public abstract class Personagem {
 
     public void setSaude(int saude) {
         this.saude = saude;
-    }
-    
-    public int[] getPosicao(){
-        return new int[] {this.x, this.y};
     }
 }

@@ -4,10 +4,19 @@
  */
 package com.pacotao.controllers;
 
+import com.pacotao.models.*;
+import com.pacotao.views.*;
+
 /**
  *
  * @author Bernardo Robaina
  */
+
 public class JogoController {
-    
+    public void iniciarJogo(MainFrame frame, int percepcao){
+        System.out.println("Entrou iniciarJogo()");
+        Jogo jogo = new Jogo(percepcao);
+        jogo.iniciar();
+        
+    }
 }
