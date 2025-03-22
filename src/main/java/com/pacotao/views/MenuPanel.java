@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 
 
 public class MenuPanel extends JPanel {
+    private static int percepcao;
+    
     public MenuPanel(MainFrame frame) {
         // Painel principal com GridBagLayout para centralizar
         setLayout(new GridBagLayout());
@@ -40,13 +42,25 @@ public class MenuPanel extends JPanel {
         JButton botaoDebug = new JButton("Debug");
         gbc.gridy++;
         add(botaoDebug, gbc);
+        //TODO: Adicionar lógica de iniciar o jogo com parametro DEBUG = TRUE (?)
         
         //Botão Sair
         JButton botaoSair = new JButton("Sair");
         gbc.gridy++;
         add(botaoSair, gbc);
+        botaoSair.addActionListener(e -> {
+            int resposta = JOptionPane.showConfirmDialog(frame, "Tem certeza que deseja sair?", 
+                                                         "Confirmar Saída", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                System.exit(0); // Fecha o programa
+            }
+        });
         
         setVisible(true);
         
+    }
+    
+    protected void setPercepcao(int percepcao){
+        this.percepcao = percepcao;
     }
 }

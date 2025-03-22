@@ -29,11 +29,13 @@ public class MainFrame extends JFrame{
         mainPanel = new JPanel(cardLayout);
 
         // Adiciona as telas ao CardLayout
-        mainPanel.add(new MenuPanel(this), "Menu");
+        MenuPanel painelMenu = new MenuPanel(this);
+        mainPanel.add(painelMenu, "Menu");
+        mainPanel.add(new DificuldadePanel(this, painelMenu), "Dificuldade");
         //mainPanel.add(new GamePanel(this), "Game");
 
         add(mainPanel);
-        this.mostraTela("Menu");
+        this.mostraTela("Dificuldade");
         setVisible(true);
     }
     
