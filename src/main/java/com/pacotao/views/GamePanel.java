@@ -18,12 +18,15 @@ public class GamePanel extends JPanel {
     private JPanel vidaPanel; // Painel para exibir a vida do jogador
     private JPanel itensPanel; // Painel para exibir os itens do jogador
     private JPanel controlePanel; // Painel de controles (D-pad)
+    private Jogo jogo;
 
-    public GamePanel(Celula[][] matrizCelulas) {
+    public GamePanel(Jogo jogo) {
+        this.jogo = jogo;
         setLayout(new BorderLayout()); // Usa BorderLayout para organizar os painéis principais
 
+        Celula[][] matrizCelulas = jogo.getMapa().getMatriz();
         // Cria o TabuleiroPanel
-        tabuleiroPanel = new TabuleiroPanel(matrizCelulas);
+        tabuleiroPanel = new TabuleiroPanel(jogo);
         add(tabuleiroPanel, BorderLayout.CENTER); // Adiciona o tabuleiro ao centro
 
         // Cria o painel de vida do jogador (embaixo do tabuleiro)
@@ -68,26 +71,37 @@ public class GamePanel extends JPanel {
         gbc.gridx = 1;
         gbc.gridy = 0;
         controlePanel.add(moverCima, gbc);
+        moverCima.addActionListener(e -> gerenciaMovimento('C'));
 
         // Botão Esquerda
         JButton moverEsquerda = new JButton("←");
         gbc.gridx = 0;
         gbc.gridy = 1;
         controlePanel.add(moverEsquerda, gbc);
+        moverEsquerda.addActionListener(e -> gerenciaMovimento('E'));
 
         // Botão Baixo
         JButton moverBaixo = new JButton("↓");
         gbc.gridx = 1;
         gbc.gridy = 2;
         controlePanel.add(moverBaixo, gbc);
+        moverBaixo.addActionListener(e -> gerenciaMovimento('B'));
 
         // Botão Direita
         JButton moverDireita = new JButton("→");
         gbc.gridx = 2;
         gbc.gridy = 1;
         controlePanel.add(moverDireita, gbc);
+        moverDireita.addActionListener(e -> gerenciaMovimento('D'));
 
         rightPanel.add(controlePanel, BorderLayout.CENTER); // Adiciona o painel de controles ao centro do rightPanel
         add(rightPanel, BorderLayout.EAST); // Adiciona o rightPanel à direita do GamePanel
+    }
+    
+    public void gerenciaMovimento(char direcao){
+        if (this.jogo.getJogador().mover(direcao)){
+            System.out.println("Movimento sucedido!");
+            tabuleiroPanel.repaint();
+        }
     }
 }

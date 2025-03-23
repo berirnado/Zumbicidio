@@ -10,25 +10,52 @@ package com.pacotao.models;
  */
 public class Jogador extends Personagem {
     private int percepcao;
+    private Mapa mapa;
     
-    public Jogador(int saude, int x, int y, int percepcao) {
+    public Jogador(int saude, int x, int y, int percepcao, Mapa mapa) {
         super("J", "caminhoImagem", saude, x, y);
+        this.mapa = mapa;
         this.percepcao = percepcao;
     }
 
-    public void mover(char direcao) {
+    public boolean mover(char direcao) {
+        boolean moverOk = false;
         // Lógica de movimento do jogador (pode ser controlada pelo usuário)
         switch (direcao) {
-            case 'C' -> y--;
-            case 'B' -> y++;
-            case 'E' -> x--;
-            case 'D' -> x++;
-            default -> System.out.println("Direção inválida!");
+            case 'C' -> {
+                if(mapa.ehPosicaoValida(x, y - 1)){
+                    y--;
+                    moverOk = true;
+                }
+            }
+            case 'B' -> {
+                if(mapa.ehPosicaoValida(x, y + 1)){
+                    y++;
+                    moverOk = true;
+                }
+            }
+            case 'E' -> {
+                if(mapa.ehPosicaoValida(x - 1, y)){
+                    x--;
+                    moverOk = true;
+                }
+            }
+            case 'D' -> {
+                if(mapa.ehPosicaoValida(x + 1, y)){
+                    x++;
+                    moverOk = true;
+                }
+            }
+            default -> {
+                System.out.println("Direção inválida!");
+            }
         }
+        return moverOk;
     }
 
     public void atacar() {
         // Lógica de ataque do jogador
     }
+    
 }
 

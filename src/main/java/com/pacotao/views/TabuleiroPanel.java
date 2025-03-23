@@ -16,9 +16,12 @@ import com.pacotao.models.*;
 public class TabuleiroPanel extends JPanel{
     private Celula[][] celulas;
     private int tamanhoCelula = 65; // Tamanho de cada célula em pixels
+    private Jogo jogo;
+    private static boolean primeiroRender = true;
 
-    public TabuleiroPanel(Celula[][] celulas) {
-        this.celulas = celulas;
+    public TabuleiroPanel(Jogo jogo) {
+        this.celulas = jogo.getMapa().getMatriz();
+        this.jogo = jogo;
         setPreferredSize(new Dimension(celulas[0].length * tamanhoCelula, celulas.length * tamanhoCelula));
     }
     
@@ -37,8 +40,13 @@ public class TabuleiroPanel extends JPanel{
                     //ImageIcon imagem = celula.getObjeto().getImagem();
                     //imagem.paintIcon(this, g, x, y);
                     Color cor = getCorPorSimbolo(celula.getObjeto().getSimbolo());
-                    g.setColor(cor);
-                    g.fillRect(x, y, tamanhoCelula, tamanhoCelula); // Pinta o quadrado
+                    if (celula.getObjeto() instanceof Jogador && !primeiroRender){
+                        g.setColor(Color.GRAY);
+                        g.fillRect(x, y, tamanhoCelula, tamanhoCelula); // Pinta o quadrado
+                    }else{
+                        g.setColor(cor);
+                        g.fillRect(x, y, tamanhoCelula, tamanhoCelula); // Pinta o quadrado   
+                    }
                 //} else {
                     // Desenha uma imagem padrão para células não reveladas
                     //ImageIcon imagemOculta = new ImageIcon(getClass().getClassLoader().getResource("imagens/oculto.png"));
@@ -49,7 +57,17 @@ public class TabuleiroPanel extends JPanel{
                 // Desenha bordas para visualização (opcional)
                 g.setColor(Color.BLACK);
                 g.drawRect(x, y, tamanhoCelula, tamanhoCelula);
+                
             }
+        }
+        if(!primeiroRender){
+            // Desenha o jogador
+            int jogadorX = jogo.getJogador().getPosicao()[0] * tamanhoCelula;
+            int jogadorY = jogo.getJogador().getPosicao()[1] * tamanhoCelula;
+            g.setColor(Color.WHITE); // Cor do jogador
+            g.fillRect(jogadorX, jogadorY, tamanhoCelula, tamanhoCelula);
+        }else{
+            primeiroRender = false;
         }
     }
         

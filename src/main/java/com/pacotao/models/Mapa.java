@@ -17,10 +17,12 @@ public class Mapa {
     private int largura;
     private int altura;
     private int percepcao;
+    protected Jogador jogador;
 
     public Mapa(String caminhoArquivo, int percepcao) {
         this.percepcao = percepcao;
         carregarMapa(caminhoArquivo);
+        this.jogador = this.encontrarJogador();
     }
     
     private void carregarMapa(String caminhoArquivo) {
@@ -34,7 +36,7 @@ public class Mapa {
                     matriz = new Celula[10][10]; // Ajuste se necessário
                 }
                 for (int i = 0; i < largura; i++) {
-                    matriz[linhas][i] = new Celula(getObjetoPorSimbolo(linha.charAt(i), i, linhas));
+                    matriz[i][linhas] = new Celula(getObjetoPorSimbolo(linha.charAt(i), i, linhas));
                 }
                 linhas++;
             }
@@ -68,21 +70,22 @@ public class Mapa {
     public ObjetoMapa getObjetoPorSimbolo(char simbolo, int x, int y){
         try{
             switch(simbolo){
-                case 'Z':
-                case 'R':
-                case 'C':
-                case 'G':
+                case 'Z', 'R', 'C', 'G' -> {
                     return new ZumbiComum(x, y);
-                case 'J':
-                    return new Jogador(5, x, y, this.percepcao);
-                case 'P':
+                }
+                case 'J' -> {
+                    return new Jogador(5, x, y, this.percepcao, this);
+                }
+                case 'P' -> {
                     return new Parede(x, y);
-                case 'V':
+                }
+                case 'V' -> {
                     return new Vazio(x, y);
-                case 'B':
+                }
+                case 'B' -> {
                     return new Bau(x, y);
-                default:
-                    throw new Exception(simbolo + " não é um símbolo aceito pelo mapa");
+                }
+                default -> throw new Exception(simbolo + " não é um símbolo aceito pelo mapa");
             }
         }
         catch(Exception e){
@@ -91,4 +94,36 @@ public class Mapa {
         }
     }
     
+    public boolean ehPosicaoValida(int x, int y){
+        if(!(x > 9 || x < 0 || y > 9 || y < 0)){
+            if(matriz[y][x].getObjeto() instanceof Parede){
+                System.out.println("Parede");
+                return false;
+            }else{
+                return true;
+            }
+        }
+        System.out.println("Posição invalida!");
+        return false;
+    }
+    
+    public boolean ehZumbi(int x, int y){
+        return matriz[x][y].getObjeto() instanceof Zumbi;
+    }
+    
+    private Jogador encontrarJogador(){
+        for(int i = 0; i < altura; i++){
+            for(int j = 0; j < largura; j++){
+                ObjetoMapa objeto = matriz[i][j].getObjeto();
+                if(objeto instanceof Jogador){
+                    return (Jogador) objeto;
+                }
+            }
+        }
+        return null;
+    }
+    
+    public Jogador getJogador(){
+        return this.jogador;
+    }
 }

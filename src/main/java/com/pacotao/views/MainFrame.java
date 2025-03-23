@@ -6,7 +6,7 @@ package com.pacotao.views;
 
 import javax.swing.*;
 import java.awt.*;
-import com.pacotao.models.Celula;
+import com.pacotao.models.Jogo;
 /**
  *
  * @author Bernardo Robaina
@@ -47,9 +47,9 @@ public class MainFrame extends JFrame{
     }
     
     // Método para criar e exibir o TabuleiroPanel
-    public void criaGamePanel(Celula[][] matrizCelulas) {
+    public void criaGamePanel(Jogo jogo) {
         if (gamePanel == null) {
-            gamePanel = new GamePanel(matrizCelulas); // Cria o TabuleiroPanel com a matriz de células
+            gamePanel = new GamePanel(jogo); // Cria o TabuleiroPanel com a classe jogo
             mainPanel.add(gamePanel, "Game"); // Adiciona ao CardLayout
         }
         mostraTela("Game"); // Mostra o TabuleiroPanel
