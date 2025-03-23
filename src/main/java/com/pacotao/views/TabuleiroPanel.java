@@ -38,7 +38,7 @@ public class TabuleiroPanel extends JPanel{
                 if (celula.isRevelada()) {
                     // Desenha a imagem do objeto na célula
                     //ImageIcon imagem = celula.getObjeto().getImagem();
-                    //imagem.paintIcon(this, g, x, y);
+                    //imagem.paIcon(this, g, x, y);
                     Color cor = getCorPorSimbolo(celula.getObjeto().getSimbolo());
                     if (celula.getObjeto() instanceof Jogador && !primeiroRender){
                         g.setColor(Color.GRAY);

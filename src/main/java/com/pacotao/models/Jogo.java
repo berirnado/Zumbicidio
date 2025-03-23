@@ -15,76 +15,25 @@ import java.util.Random;
 public class Jogo {
     private Jogador jogador;
     private static int percepcao;
-    private List<Zumbi> zumbis;
     private Mapa mapa;
     private boolean turnoJogador;
     public boolean ehDebug;
     protected Random random;
+    private final ZumbiComum zumbi;
 
     public Jogo(int percepcao, boolean ehDebug) {
         this.turnoJogador = true;
         this.ehDebug = ehDebug;
         this.percepcao = percepcao;
         this.random = new Random();
+        this.zumbi = new ZumbiComum(999, 999);
     }
 
     public void iniciar() {
         //Instanciar mapa
         this.mapa = new Mapa("src/main/java/com/pacotao/Mapas/mapa_" + String.valueOf(this.random.nextInt(5) + 1) + ".txt", this.percepcao, this.ehDebug); 
     }
-
-    public boolean moverJogador(String direcao) {
-        /**
-        if (!turnoJogador) {
-            return false;
-        }
-        boolean sucesso = jogador.mover(direcao, mapa);
-        if (sucesso) {
-            verificarItens();
-            verificarCombate();
-            turnoJogador = false;
-        }
-        return sucesso;
-        */
-        return true;
-    }
-
-    public void iniciarTurnoZumbis() {
-        /**
-        for (Zumbi zumbi : zumbis) {
-            zumbi.mover(mapa, jogador);
-        }
-        verificarCombate();
-        turnoJogador = true;
-        */
-    }
-
-    private void verificarCombate() {
-        /**
-        for (Zumbi zumbi : zumbis) {
-            if (zumbi.getPosicao().equals(jogador.getPosicao())) {
-                jogador.receberDano(zumbi.getDano());
-            }
-        }
-        zumbis.removeIf(z -> z.getVida() <= 0);
-        */
-    }
-
-    private void verificarItens() {
-        /**
-        if (mapa.temItem(jogador.getPosicao())) {
-            jogador.coletarItem(mapa.pegarItem(jogador.getPosicao()));
-        }
-        */
-    }
-
-    public boolean jogadorVenceu() {
-        /**
-        return mapa.objetivoConcluido(jogador.getPosicao());
-        */
-        return true;
-    }
-
+    
     public boolean jogadorDerrotado() {
         return jogador.getSaude() <= 0;
     }
@@ -102,7 +51,7 @@ public class Jogo {
     }
 
     public List<Zumbi> getZumbis() {
-        return zumbis;
+        return zumbi.listarZumbis();
     }
 }
 

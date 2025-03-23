@@ -19,6 +19,9 @@ public class JogoController {
     
     private TabuleiroPanel tabuleiroPanel;
     private InventarioPanel inventarioPanel;
+    
+    private CombateController combateController;
+    
     private boolean ehDebug;
     
     public void iniciarJogo(MainFrame frame, int percepcao, boolean ehDebug){
@@ -36,11 +39,24 @@ public class JogoController {
         frame.criaGamePanel(jogo, this);
     }
     
+    public void checkForCombat() {
+        for (Zumbi zumbi : jogo.getZumbis()) {
+            if (jogador.getPosicao()[0] == zumbi.getPosicao()[0] && 
+                jogador.getPosicao()[1] == zumbi.getPosicao()[1]) 
+            {
+                System.out.println("Zumbi encontrado");
+                this.combateController = new CombateController(this, jogador, zumbi);
+                break;
+            }
+        }
+    }
+    
     public void gerenciaMovimentoJogador(char direcao){
         if (jogador.mover(direcao)){
             if(!ehDebug){
                 jogo.getMapa().revelaCampoVisao(this.jogo.getJogador());   
             }
+            checkForCombat();
             tabuleiroPanel.repaint();
         }
     }

@@ -4,6 +4,8 @@
  */
 package com.pacotao.models;
 
+import java.util.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,8 +18,11 @@ public class Mapa {
     private Celula[][] matriz;
     private int largura;
     private int altura;
+    
     private int percepcao;
+    
     protected Jogador jogador;
+    
     private boolean ehDebug;
 
     public Mapa(String caminhoArquivo, int percepcao, boolean ehDebug) {
@@ -41,7 +46,7 @@ public class Mapa {
                     matriz = new Celula[10][10]; // Ajuste se necessário
                 }
                 for (int i = 0; i < largura; i++) {
-                    Celula cel = new Celula(getObjetoPorSimbolo(linha.charAt(i), i, linhas));
+                    Celula cel = new Celula(getObjetoPorSimbolo(linha.charAt(i), linhas, i));
                     matriz[i][linhas] = cel;
                     if(ehDebug){
                         cel.setRevelada(true);
@@ -136,15 +141,6 @@ public class Mapa {
         return (objeto instanceof Vazio);
     }
     
-    public void exibirMapa() {
-        for (int i = 0; i < altura; i++) {
-            for (int j = 0; j < largura; j++) {
-                System.out.print(matriz[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
-    
     public void esconderTodasCelulas(){
         for(int i = 0; i < altura; i++){
             for (int j = 0; j < largura; j++) {
@@ -168,8 +164,25 @@ public class Mapa {
     public ObjetoMapa getObjetoPorSimbolo(char simbolo, int x, int y){
         try{
             switch(simbolo){
-                case 'Z', 'R', 'C', 'G' -> {
-                    return new ZumbiComum(x, y);
+                case 'Z' -> {
+                    ZumbiComum zumbi = new ZumbiComum(x,y);
+                    zumbi.adicionaZumbi(zumbi);
+                    return zumbi;
+                }
+                case 'R' -> {
+                    ZumbiRastejante zumbi = new ZumbiRastejante(x,y);
+                    zumbi.adicionaZumbi(zumbi);
+                    return zumbi;
+                }
+                case 'C' -> {
+                    ZumbiCorredor zumbi = new ZumbiCorredor(x,y);
+                    zumbi.adicionaZumbi(zumbi);
+                    return zumbi;
+                }
+                case 'G' -> {
+                    ZumbiGigante zumbi = new ZumbiGigante(x,y);
+                    zumbi.adicionaZumbi(zumbi);
+                    return zumbi;
                 }
                 case 'J' -> {
                     return new Jogador(3, x, y, this.percepcao, this);
@@ -211,8 +224,6 @@ public class Mapa {
                     this.jogador.coletarItem(bauRetorno);
                     matriz[y][x].setObjeto(new Vazio(x, y));
                     return true;
-                }else if(objetoDestino instanceof Zumbi){
-                    //jogador.atacar();
                 }
                 return true;
             }

@@ -4,6 +4,7 @@
  */
 package com.pacotao.models;
 
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
@@ -36,5 +37,27 @@ public abstract class ObjetoMapa {
     
     public int[] getPosicao(){
         return new int[] {this.x, this.y};
+    }
+    
+     private void trataImagem(){
+        Image image = imagem.getImage(); 
+        
+        Image tratada = image.getScaledInstance(90, 90,  java.awt.Image.SCALE_SMOOTH);
+        
+        this.imagem = new ImageIcon(tratada);
+    }
+     
+     /**
+      * 
+      * @param x SIZE_X
+      * @param y SIZE_Y
+      * @return Icone da classe tratado para os parametros de tamanho.
+      */
+     private ImageIcon getTrataImagem(int x, int y){
+        Image image = imagem.getImage(); 
+        
+        Image tratada = image.getScaledInstance(x, y,  java.awt.Image.SCALE_SMOOTH);
+        
+        return new ImageIcon(tratada);
     }
 }

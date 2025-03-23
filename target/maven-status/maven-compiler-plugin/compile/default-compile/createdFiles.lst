@@ -3,6 +3,7 @@ com\pacotao\views\TabuleiroPanel.class
 com\pacotao\views\DificuldadePanel.class
 com\pacotao\models\Medicamento.class
 com\pacotao\models\ZumbiComum.class
+com\pacotao\controllers\CombateController.class
 com\pacotao\models\Jogo.class
 com\pacotao\views\MainFrame.class
 com\pacotao\controllers\JogoController.class
@@ -18,6 +19,7 @@ com\pacotao\models\Mapa.class
 com\pacotao\models\Item.class
 com\pacotao\models\Personagem.class
 com\pacotao\models\Arma.class
+com\pacotao\views\CombateFrame.class
 com\pacotao\models\Bau.class
 com\pacotao\models\Parede.class
 com\pacotao\views\MenuPanel.class
