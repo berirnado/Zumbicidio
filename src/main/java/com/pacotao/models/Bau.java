@@ -4,13 +4,41 @@
  */
 package com.pacotao.models;
 
+import java.util.*;
+
 /**
  *
  * @author Bernardo Robaina
  */
 
 public class Bau extends ObjetoMapa{
+    private static List<Item> items = new ArrayList<>(List.of(
+        new Arma("Revolver", 2, 4),
+        new Medicamento("Medicamento", 1),
+        new Medicamento("Medicamento", 1),
+        new Medicamento("Medicamento", 1),
+        new Medicamento("Medicamento", 1),
+        new Medicamento("Medicamento", 1),
+        new Medicamento("Medicamento", 1),
+        new Medicamento("Medicamento", 1),
+        new Medicamento("Medicamento", 1),
+        new Medicamento("Medicamento", 1),
+        new Arma("Taco", 2, 100),
+        new Arma("Revolver", 2, 1),
+        new Arma("Z", 999, 999) // ZUMBI MIMIC
+    ));
+    private Random random = new Random();
+    
     public Bau(int x, int y){
         super("B", "camihnoImagemBau", x, y);
+    }
+    
+    public Item abrir(){
+        if (!items.isEmpty()) {
+            Item itemRetorno = items.get(random.nextInt(items.size()));
+            items.remove(itemRetorno);
+            return itemRetorno; // Retorna um item aleatório
+        }
+        return null; // Retorna null se a lista estiver vazia
     }
 }

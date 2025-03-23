@@ -43,11 +43,11 @@ public class GamePanel extends JPanel {
 
         // Cria o painel de itens do jogador (grid 2x3)
         itensPanel = new JPanel();
-        itensPanel.setLayout(new GridLayout(2, 3, 5, 5)); // Grid de 2 linhas e 3 colunas com espaçamento de 5 pixels
+        itensPanel.setLayout(new GridLayout(1, 3, 5, 5)); // Grid de 2 linhas e 3 colunas com espaçamento de 5 pixels
         itensPanel.setBorder(BorderFactory.createTitledBorder("Itens do Jogador"));
 
         // Adiciona 6 espaços quadrados ao grid de itens
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 3; i++) {
             JLabel itemLabel = new JLabel(); // Cria um JLabel para cada espaço
             itemLabel.setPreferredSize(new Dimension(50, 50)); // Define o tamanho quadrado (50x50 pixels)
             itemLabel.setHorizontalAlignment(JLabel.CENTER); // Centraliza o ícone

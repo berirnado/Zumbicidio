@@ -17,7 +17,7 @@ public class Celula {
         this.objeto = objeto;
         this.revelada = false; // Por padrão, a célula não está revelada
     }
-
+    
     public ObjetoMapa getObjeto() {
         return objeto;
     }

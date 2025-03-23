@@ -124,6 +124,8 @@ public class Mapa {
         }
         return false; // Fora dos limites do mapa
     }
+    
+    
 
     
     public boolean revelarCelula(int x, int y){
@@ -170,7 +172,7 @@ public class Mapa {
                     return new ZumbiComum(x, y);
                 }
                 case 'J' -> {
-                    return new Jogador(5, x, y, this.percepcao, this);
+                    return new Jogador(3, x, y, this.percepcao, this);
                 }
                 case 'P' -> {
                     return new Parede(x, y);
@@ -192,10 +194,26 @@ public class Mapa {
     
     public boolean ehPosicaoValida(int x, int y){
         if(!(x > 9 || x < 0 || y > 9 || y < 0)){
-            if(matriz[y][x].getObjeto() instanceof Parede){
+            ObjetoMapa objetoDestino = matriz[y][x].getObjeto();
+            if(objetoDestino instanceof Parede){
                 System.out.println("Parede");
                 return false;
             }else{
+                if(objetoDestino instanceof Bau bau){
+                    Item bauRetorno = bau.abrir();
+                    System.out.println("Baú");
+                    if(bauRetorno.getNome() == "Z"){
+                        System.out.println("Zumbi no baú");
+                        //Iniciar combate com Zumbi rastejante
+                        return true;
+                    }
+                    System.out.println("Coletou o item " + bauRetorno.getNome());
+                    this.jogador.coletarItem(bauRetorno);
+                    matriz[y][x].setObjeto(new Vazio(x, y));
+                    return true;
+                }else if(objetoDestino instanceof Zumbi){
+                    //jogador.atacar();
+                }
                 return true;
             }
         }
@@ -204,7 +222,30 @@ public class Mapa {
     }
     
     public boolean ehZumbi(int x, int y){
-        return matriz[x][y].getObjeto() instanceof Zumbi;
+        if(!(x > 9 || x < 0 || y > 9 || y < 0)){
+            return matriz[x][y].getObjeto() instanceof Zumbi;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public Item abreBau(int x, int y){
+        if(!(x > 9 || x < 0 || y > 9 || y < 0)){
+            if(matriz[y][x].getObjeto() instanceof Bau bau){
+                Item bauRetorno = bau.abrir();
+                if(bauRetorno.getNome() == "Z"){
+                    System.out.println("Zumbi no baú");
+                    //Iniciar combate com Zumbi rastejante
+                    return null;
+                }
+                System.out.println("Coletou o item " + bauRetorno.getNome());
+                return bauRetorno;
+            }else{
+                return null;
+            }
+        }
+        return null;
     }
     
     private Jogador encontrarJogador(){
