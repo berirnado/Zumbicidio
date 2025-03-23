@@ -79,7 +79,30 @@ public class Jogador extends Personagem {
     }
     
     public void coletarItem(Item item){
+        if(item instanceof Arma){
+            if(item.getNome() == "Revolver"){
+                if(this.jaTemRevolver()){
+                    jogoController.atualizaInventario();
+                    return;
+                }
+            }
+        }
         this.listItens.add(item);
+        jogoController.atualizaInventario();
+    }
+    
+    public boolean jaTemRevolver(){
+        if(!listItens.isEmpty()){
+            for(int i = 0; i < listItens.size(); i++){
+                if(listItens.get(i) instanceof Arma arma){
+                    if(arma.getNome() == "Revolver"){
+                        arma.setMunicao(arma.getMunicao() + 1);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     
     public boolean curar(){
@@ -93,6 +116,7 @@ public class Jogador extends Personagem {
                 System.out.println("Curando...");
                 this.setSaude(getSaude() + 1);
                 listItens.remove(i);
+                jogoController.atualizaInventario();
                 return true;
             }
            }

@@ -14,13 +14,12 @@ import java.util.*;
 public class Bau extends ObjetoMapa{
     private static List<Item> items = new ArrayList<>(List.of(
         new Arma("Revolver", 2, 4),
-        new Medicamento("Medicamento", 1),
-        new Medicamento("Medicamento", 1),
-        new Medicamento("Medicamento", 1),
-        new Medicamento("Medicamento", 1),
-        new Medicamento("Medicamento", 1),
-        new Medicamento("Medicamento", 1),
-        new Medicamento("Medicamento", 1),
+            new Arma("Revolver", 2, 4),
+            new Arma("Revolver", 2, 4),
+            new Arma("Revolver", 2, 4),
+            new Arma("Revolver", 2, 4),
+            new Arma("Revolver", 2, 4),
+            
         new Medicamento("Medicamento", 1),
         new Medicamento("Medicamento", 1),
         new Arma("Taco", 2, 100),
@@ -30,7 +29,7 @@ public class Bau extends ObjetoMapa{
     private Random random = new Random();
     
     public Bau(int x, int y){
-        super("B", "camihnoImagemBau", x, y);
+        super("B", "src/", x, y);
     }
     
     public Item abrir(){
