@@ -9,8 +9,11 @@ package com.pacotao.models;
  * @author Bernardo Robaina
  */
 public class ZumbiGigante extends Zumbi{
+    
+    private static final String CAMINHO_IMAGEM = "src/main/java/com/pacotao/imagens/zumbi_gigante.png";
+    
     public ZumbiGigante(int x, int y){
-        super(3, x, y);
+        super(3,CAMINHO_IMAGEM, x, y);
     }
     
     @Override

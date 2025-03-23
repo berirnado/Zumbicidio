@@ -6,6 +6,7 @@ package com.pacotao.models;
 
 import com.pacotao.controllers.JogoController;
 import java.util.*;
+import java.util.Random;
 
 /**
  *
@@ -17,9 +18,10 @@ public class Jogador extends Personagem {
     private Mapa mapa;
     private JogoController jogoController;
     private List<Item> listItens;
+    private static final String CAMINHO_BASE = "src/main/java/com/pacotao/imagens/personagem";
     
     public Jogador(int saude, int x, int y, int percepcao, Mapa mapa) {
-        super("J", "caminhoImagem", saude, x, y);
+        super("J", CAMINHO_BASE + (new Random().nextInt(3) + 1) + ".png", saude, x, y);
         this.mapa = mapa;
         this.percepcao = percepcao;
         this.listItens = new ArrayList<Item>();

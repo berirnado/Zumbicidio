@@ -4,6 +4,7 @@
  */
 package com.pacotao.models;
 
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
@@ -20,6 +21,7 @@ public abstract class ObjetoMapa {
         this.x = x;
         this.y = y;
         this.imagem = new ImageIcon(caminhoImagem); // Carrega a imagem a partir do caminho
+        this.trataImagem();
     }
 
     public String getSimbolo() {
@@ -36,5 +38,14 @@ public abstract class ObjetoMapa {
     
     public int[] getPosicao(){
         return new int[] {this.x, this.y};
+    }
+
+    //Definição do método que faz o resize da imagem para ObjetoMapa
+    private void trataImagem() {
+        Image image = imagem.getImage(); 
+        
+        Image tratada = image.getScaledInstance(90, 90,  java.awt.Image.SCALE_SMOOTH);
+        
+        this.imagem = new ImageIcon(tratada);
     }
 }
