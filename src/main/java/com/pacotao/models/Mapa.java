@@ -92,7 +92,39 @@ public class Mapa {
         }
         
         matriz[jogadorY][jogadorX].setRevelada(true);
+        if(this.percepcao >= 2){
+            this.revelarPrimeiraCasaDiagonal(this.getJogador());
+        }
     }
+    
+    // Revela a primeira casa em cada diagonal a partir da posição do jogador
+    public void revelarPrimeiraCasaDiagonal(Jogador jogador) {
+        int jogadorX = jogador.getPosicao()[0]; // Coluna do jogador
+        int jogadorY = jogador.getPosicao()[1]; // Linha do jogador
+
+        // Revela a célula na diagonal noroeste (NW)
+        revelarCelulaDiagonal(jogadorY - 1, jogadorX - 1);
+
+        // Revela a célula na diagonal nordeste (NE)
+        revelarCelulaDiagonal(jogadorY - 1, jogadorX + 1);
+
+        // Revela a célula na diagonal sudoeste (SW)
+        revelarCelulaDiagonal(jogadorY + 1, jogadorX - 1);
+
+        // Revela a célula na diagonal sudeste (SE)
+        revelarCelulaDiagonal(jogadorY + 1, jogadorX + 1);
+    }
+
+    // Revela uma célula e retorna true se a célula for vazia (ou seja, a visão pode continuar)
+    private boolean revelarCelulaDiagonal(int y, int x) {
+        // Verifica se a posição (y, x) está dentro dos limites da matriz
+        if (y >= 0 && y < altura && x >= 0 && x < largura) {
+            Celula celula = matriz[y][x]; // y é a linha, x é a coluna
+            celula.setRevelada(true); // Revela a célula
+        }
+        return false; // Fora dos limites do mapa
+    }
+
     
     public boolean revelarCelula(int x, int y){
         Celula celula = matriz[y][x];
