@@ -12,7 +12,7 @@ public class Medicamento extends Item{
     private int qtdCura;
     
     public Medicamento(String nome, int qtdCura) {
-        super(nome);
+        super(nome, "src/main/java/com/pacotao/imagens/atadura.png");
         this.qtdCura = qtdCura;
     }
 }

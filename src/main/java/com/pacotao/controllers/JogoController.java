@@ -15,9 +15,11 @@ import java.util.*;
 
 public class JogoController {
     private Jogo jogo;
-    private TabuleiroPanel tabuleiroPanel;
-    private boolean ehDebug;
     private Jogador jogador;
+    
+    private TabuleiroPanel tabuleiroPanel;
+    private InventarioPanel inventarioPanel;
+    private boolean ehDebug;
     
     public void iniciarJogo(MainFrame frame, int percepcao, boolean ehDebug){
         System.out.println("Entrou iniciarJogo()");
@@ -43,7 +45,9 @@ public class JogoController {
         }
     }
     
-    
+    public void setInventarioPanel(InventarioPanel inventarioPanel) {
+        this.inventarioPanel = inventarioPanel;
+    }
     
     public void setTabuleiro(TabuleiroPanel tabuleiroPanel) {
         this.tabuleiroPanel = tabuleiroPanel;
@@ -53,6 +57,17 @@ public class JogoController {
         System.out.println("Vida atual: " + jogador.getSaude());
         jogador.curar();
         System.out.println("Vida atual: " + jogador.getSaude());
+        atualizaInventario();
         return true;
+    }
+    
+    public void atualizaInventario(){
+        if (inventarioPanel != null) {
+            inventarioPanel.atualizar(jogador.getListItens()); // Chama o método de atualização do painel
+        }
+    }
+    
+    public List<Item> getInventario(){
+        return jogador.getListItens();
     }
 }
