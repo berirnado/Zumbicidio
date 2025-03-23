@@ -18,17 +18,19 @@ public class Jogo {
     private List<Zumbi> zumbis;
     private Mapa mapa;
     private boolean turnoJogador;
+    public boolean ehDebug;
     protected Random random;
 
-    public Jogo(int percepcao) {
+    public Jogo(int percepcao, boolean ehDebug) {
         this.turnoJogador = true;
+        this.ehDebug = ehDebug;
         this.percepcao = percepcao;
         this.random = new Random();
     }
 
     public void iniciar() {
         //Instanciar mapa
-        this.mapa = new Mapa("src/main/java/com/pacotao/Mapas/mapa_" + String.valueOf(this.random.nextInt(5) + 1) + ".txt", this.percepcao); 
+        this.mapa = new Mapa("src/main/java/com/pacotao/Mapas/mapa_" + String.valueOf(this.random.nextInt(5) + 1) + ".txt", this.percepcao, this.ehDebug); 
     }
 
     public boolean moverJogador(String direcao) {

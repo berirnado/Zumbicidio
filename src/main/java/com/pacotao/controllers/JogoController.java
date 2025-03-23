@@ -15,19 +15,23 @@ import com.pacotao.views.*;
 public class JogoController {
     private Jogo jogo;
     private TabuleiroPanel tabuleiroPanel;
+    private boolean ehDebug;
     
-    public void iniciarJogo(MainFrame frame, int percepcao){
+    public void iniciarJogo(MainFrame frame, int percepcao, boolean ehDebug){
         System.out.println("Entrou iniciarJogo()");
-        this.jogo = new Jogo(percepcao);
+        this.jogo = new Jogo(percepcao, ehDebug);
         jogo.iniciar();
         jogo.setJogador(jogo.getMapa().getJogador());
+        this.ehDebug = ehDebug;
         frame.criaGamePanel(jogo, this);
     }
     
     public void gerenciaMovimentoJogador(char direcao){
         if (this.jogo.getJogador().mover(direcao)){
             System.out.println("Movimento sucedido!");
-            jogo.getMapa().revelaCampoVisao(this.jogo.getJogador());
+            if(!ehDebug){
+                jogo.getMapa().revelaCampoVisao(this.jogo.getJogador());   
+            }
             tabuleiroPanel.repaint();
         }
     }

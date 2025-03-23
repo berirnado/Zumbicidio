@@ -97,13 +97,15 @@ public class GamePanel extends JPanel {
         
         JButton botaoCurar = new JButton("Curar");
         gbc.gridx = 1;
-        gbc.gridy++;
+        gbc.gridy = 3;
         botaoCurar.addActionListener(e -> jogoController.curarJogador());
+        controlePanel.add(botaoCurar, gbc);
         
-        JButton botaoSair = new JButton("Curar");
+        JButton botaoSair = new JButton("Sair");
         gbc.gridx = 1;
         gbc.gridy++;
         //botaoSair.addActionListener(e -> jogoController.);
+        controlePanel.add(botaoSair, gbc);
 
         rightPanel.add(controlePanel, BorderLayout.CENTER); // Adiciona o painel de controles ao centro do rightPanel
         add(rightPanel, BorderLayout.EAST); // Adiciona o rightPanel à direita do GamePanel

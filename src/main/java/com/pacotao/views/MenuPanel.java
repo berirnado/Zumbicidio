@@ -39,13 +39,15 @@ public class MenuPanel extends JPanel {
         gbc.gridy++;
         add(botaoJogar, gbc);
         jogoController = new JogoController();
-        botaoJogar.addActionListener(e -> jogoController.iniciarJogo(frame, percepcao));
+        //Inicia jogo com debug = false
+        botaoJogar.addActionListener(e -> jogoController.iniciarJogo(frame, percepcao, false));
         
         //Botão Debug
         JButton botaoDebug = new JButton("Debug");
         gbc.gridy++;
         add(botaoDebug, gbc);
-        //TODO: Adicionar lógica de iniciar o jogo com parametro DEBUG = TRUE (?)
+        //Inicia jogo com debug = true
+        botaoDebug.addActionListener(e -> jogoController.iniciarJogo(frame, percepcao, true));
         
         //Botão Sair
         JButton botaoSair = new JButton("Sair");

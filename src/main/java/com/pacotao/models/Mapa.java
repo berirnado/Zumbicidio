@@ -18,12 +18,16 @@ public class Mapa {
     private int altura;
     private int percepcao;
     protected Jogador jogador;
+    private boolean ehDebug;
 
-    public Mapa(String caminhoArquivo, int percepcao) {
+    public Mapa(String caminhoArquivo, int percepcao, boolean ehDebug) {
+        this.ehDebug = ehDebug;
         this.percepcao = percepcao;
         carregarMapa(caminhoArquivo);
         this.jogador = this.encontrarJogador();
-        this.revelaCampoVisao(jogador);
+        if (!ehDebug){
+            this.revelaCampoVisao(jogador);
+        }
     }
     
     private void carregarMapa(String caminhoArquivo) {
@@ -37,7 +41,11 @@ public class Mapa {
                     matriz = new Celula[10][10]; // Ajuste se necessário
                 }
                 for (int i = 0; i < largura; i++) {
-                    matriz[i][linhas] = new Celula(getObjetoPorSimbolo(linha.charAt(i), i, linhas));
+                    Celula cel = new Celula(getObjetoPorSimbolo(linha.charAt(i), i, linhas));
+                    matriz[i][linhas] = cel;
+                    if(ehDebug){
+                        cel.setRevelada(true);
+                    }
                 }
                 linhas++;
             }
@@ -93,6 +101,7 @@ public class Mapa {
         ObjetoMapa objeto = celula.getObjeto();
         return (objeto instanceof Vazio);
     }
+    
     public void exibirMapa() {
         for (int i = 0; i < altura; i++) {
             for (int j = 0; j < largura; j++) {
