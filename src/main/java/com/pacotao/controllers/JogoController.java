@@ -17,6 +17,6 @@ public class JogoController {
         System.out.println("Entrou iniciarJogo()");
         Jogo jogo = new Jogo(percepcao);
         jogo.iniciar();
-        
+        frame.criaGamePanel(jogo.getMapa().getMatriz());
     }
 }

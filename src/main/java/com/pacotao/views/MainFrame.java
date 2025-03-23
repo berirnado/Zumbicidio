@@ -6,6 +6,7 @@ package com.pacotao.views;
 
 import javax.swing.*;
 import java.awt.*;
+import com.pacotao.models.Celula;
 /**
  *
  * @author Bernardo Robaina
@@ -16,10 +17,11 @@ import java.awt.*;
 public class MainFrame extends JFrame{
     private CardLayout cardLayout;
     private JPanel mainPanel;
+    private GamePanel gamePanel; 
     
     public MainFrame(){
         super("Zumbicidio");
-        setSize(1040, 720);
+        setSize(900, 800);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,5 +44,14 @@ public class MainFrame extends JFrame{
     // Método para navegar entre telas
     public void mostraTela(String nomeTela) {
         cardLayout.show(mainPanel, nomeTela);
+    }
+    
+    // Método para criar e exibir o TabuleiroPanel
+    public void criaGamePanel(Celula[][] matrizCelulas) {
+        if (gamePanel == null) {
+            gamePanel = new GamePanel(matrizCelulas); // Cria o TabuleiroPanel com a matriz de células
+            mainPanel.add(gamePanel, "Game"); // Adiciona ao CardLayout
+        }
+        mostraTela("Game"); // Mostra o TabuleiroPanel
     }
 }

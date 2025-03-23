@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class Jogo {
     private Jogador jogador;
-    private int percepcao;
+    private static int percepcao;
     private List<Zumbi> zumbis;
     private Mapa mapa;
     private boolean turnoJogador;
@@ -28,10 +28,8 @@ public class Jogo {
 
     public void iniciar() {
         //Instanciar mapa
-        System.out.println("Diretório atual: " + System.getProperty("user.dir"));
-        this.mapa = new Mapa("src/main/java/com/pacotao/Mapas/mapa_" + String.valueOf(this.random.nextInt(5) + 1) + ".txt");
-        this.mapa.exibirMapa();
-        //Renderizar o mapa
+        this.mapa = new Mapa("src/main/java/com/pacotao/Mapas/mapa_" + String.valueOf(this.random.nextInt(5) + 1) + ".txt", this.percepcao);
+        
     }
 
     public boolean moverJogador(String direcao) {

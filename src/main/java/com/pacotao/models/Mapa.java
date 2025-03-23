@@ -16,8 +16,10 @@ public class Mapa {
     private Celula[][] matriz;
     private int largura;
     private int altura;
+    private int percepcao;
 
-    public Mapa(String caminhoArquivo) {
+    public Mapa(String caminhoArquivo, int percepcao) {
+        this.percepcao = percepcao;
         carregarMapa(caminhoArquivo);
     }
     
@@ -29,7 +31,7 @@ public class Mapa {
             while ((linha = br.readLine()) != null) {
                 if (matriz == null) {
                     largura = linha.length();
-                    matriz = new Celula[50][50]; // Ajuste se necessário
+                    matriz = new Celula[10][10]; // Ajuste se necessário
                 }
                 for (int i = 0; i < largura; i++) {
                     matriz[linhas][i] = new Celula(getObjetoPorSimbolo(linha.charAt(i), i, linhas));
@@ -67,9 +69,12 @@ public class Mapa {
         try{
             switch(simbolo){
                 case 'Z':
+                case 'R':
+                case 'C':
+                case 'G':
                     return new ZumbiComum(x, y);
                 case 'J':
-                    return new Jogador(5, x, y, 3);
+                    return new Jogador(5, x, y, this.percepcao);
                 case 'P':
                     return new Parede(x, y);
                 case 'V':
