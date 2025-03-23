@@ -4,6 +4,7 @@
  */
 package com.pacotao.views;
 
+import com.pacotao.controllers.JogoController;
 import javax.swing.*;
 import java.awt.*;
 import com.pacotao.models.Jogo;
@@ -47,9 +48,9 @@ public class MainFrame extends JFrame{
     }
     
     // Método para criar e exibir o TabuleiroPanel
-    public void criaGamePanel(Jogo jogo) {
+    public void criaGamePanel(Jogo jogo, JogoController jogoController) {
         if (gamePanel == null) {
-            gamePanel = new GamePanel(jogo); // Cria o TabuleiroPanel com a classe jogo
+            gamePanel = new GamePanel(jogo, jogoController); // Cria o TabuleiroPanel com a classe jogo
             mainPanel.add(gamePanel, "Game"); // Adiciona ao CardLayout
         }
         mostraTela("Game"); // Mostra o TabuleiroPanel

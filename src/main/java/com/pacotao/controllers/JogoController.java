@@ -13,11 +13,30 @@ import com.pacotao.views.*;
  */
 
 public class JogoController {
+    private Jogo jogo;
+    private TabuleiroPanel tabuleiroPanel;
+    
     public void iniciarJogo(MainFrame frame, int percepcao){
         System.out.println("Entrou iniciarJogo()");
-        Jogo jogo = new Jogo(percepcao);
+        this.jogo = new Jogo(percepcao);
         jogo.iniciar();
         jogo.setJogador(jogo.getMapa().getJogador());
-        frame.criaGamePanel(jogo);
+        frame.criaGamePanel(jogo, this);
+    }
+    
+    public void gerenciaMovimentoJogador(char direcao){
+        if (this.jogo.getJogador().mover(direcao)){
+            System.out.println("Movimento sucedido!");
+            jogo.getMapa().revelaCampoVisao(this.jogo.getJogador());
+            tabuleiroPanel.repaint();
+        }
+    }
+    
+    public void setTabuleiro(TabuleiroPanel tabuleiroPanel) {
+        this.tabuleiroPanel = tabuleiroPanel;
+    }
+    
+    public boolean curarJogador(){
+        return true;
     }
 }

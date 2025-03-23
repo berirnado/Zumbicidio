@@ -7,6 +7,7 @@ package com.pacotao.views;
 import javax.swing.*;
 import java.awt.*;
 import com.pacotao.models.*;
+import com.pacotao.controllers.JogoController;
 
 /**
  *
@@ -20,7 +21,7 @@ public class GamePanel extends JPanel {
     private JPanel controlePanel; // Painel de controles (D-pad)
     private Jogo jogo;
 
-    public GamePanel(Jogo jogo) {
+    public GamePanel(Jogo jogo, JogoController jogoController) {
         this.jogo = jogo;
         setLayout(new BorderLayout()); // Usa BorderLayout para organizar os painéis principais
 
@@ -71,37 +72,42 @@ public class GamePanel extends JPanel {
         gbc.gridx = 1;
         gbc.gridy = 0;
         controlePanel.add(moverCima, gbc);
-        moverCima.addActionListener(e -> gerenciaMovimento('C'));
+        moverCima.addActionListener(e -> jogoController.gerenciaMovimentoJogador('C'));
 
         // Botão Esquerda
         JButton moverEsquerda = new JButton("←");
         gbc.gridx = 0;
         gbc.gridy = 1;
         controlePanel.add(moverEsquerda, gbc);
-        moverEsquerda.addActionListener(e -> gerenciaMovimento('E'));
+        moverEsquerda.addActionListener(e -> jogoController.gerenciaMovimentoJogador('E'));
 
         // Botão Baixo
         JButton moverBaixo = new JButton("↓");
         gbc.gridx = 1;
         gbc.gridy = 2;
         controlePanel.add(moverBaixo, gbc);
-        moverBaixo.addActionListener(e -> gerenciaMovimento('B'));
+        moverBaixo.addActionListener(e -> jogoController.gerenciaMovimentoJogador('B'));
 
         // Botão Direita
         JButton moverDireita = new JButton("→");
         gbc.gridx = 2;
         gbc.gridy = 1;
         controlePanel.add(moverDireita, gbc);
-        moverDireita.addActionListener(e -> gerenciaMovimento('D'));
+        moverDireita.addActionListener(e -> jogoController.gerenciaMovimentoJogador('D'));
+        
+        JButton botaoCurar = new JButton("Curar");
+        gbc.gridx = 1;
+        gbc.gridy++;
+        botaoCurar.addActionListener(e -> jogoController.curarJogador());
+        
+        JButton botaoSair = new JButton("Curar");
+        gbc.gridx = 1;
+        gbc.gridy++;
+        //botaoSair.addActionListener(e -> jogoController.);
 
         rightPanel.add(controlePanel, BorderLayout.CENTER); // Adiciona o painel de controles ao centro do rightPanel
         add(rightPanel, BorderLayout.EAST); // Adiciona o rightPanel à direita do GamePanel
-    }
-    
-    public void gerenciaMovimento(char direcao){
-        if (this.jogo.getJogador().mover(direcao)){
-            System.out.println("Movimento sucedido!");
-            tabuleiroPanel.repaint();
-        }
+        
+        jogoController.setTabuleiro(tabuleiroPanel);
     }
 }

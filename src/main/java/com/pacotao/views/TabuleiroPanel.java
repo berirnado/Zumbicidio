@@ -35,7 +35,7 @@ public class TabuleiroPanel extends JPanel{
                 int x = j * tamanhoCelula; // Posição X da célula
                 int y = i * tamanhoCelula; // Posição Y da célula
 
-                //if (celula.isRevelada()) {
+                if (celula.isRevelada()) {
                     // Desenha a imagem do objeto na célula
                     //ImageIcon imagem = celula.getObjeto().getImagem();
                     //imagem.paintIcon(this, g, x, y);
@@ -47,12 +47,14 @@ public class TabuleiroPanel extends JPanel{
                         g.setColor(cor);
                         g.fillRect(x, y, tamanhoCelula, tamanhoCelula); // Pinta o quadrado   
                     }
-                //} else {
+                } else {
                     // Desenha uma imagem padrão para células não reveladas
                     //ImageIcon imagemOculta = new ImageIcon(getClass().getClassLoader().getResource("imagens/oculto.png"));
                     //imagemOculta.paintIcon(this, g, x, y);
+                    g.setColor(Color.LIGHT_GRAY);
+                    g.fillRect(x, y, tamanhoCelula, tamanhoCelula);
                     
-                //}
+                }
 
                 // Desenha bordas para visualização (opcional)
                 g.setColor(Color.BLACK);

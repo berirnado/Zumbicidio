@@ -23,6 +23,7 @@ public class Mapa {
         this.percepcao = percepcao;
         carregarMapa(caminhoArquivo);
         this.jogador = this.encontrarJogador();
+        this.revelaCampoVisao(jogador);
     }
     
     private void carregarMapa(String caminhoArquivo) {
@@ -46,12 +47,66 @@ public class Mapa {
         }
     }
     
+    //Método para revelar campo de visão do jogador
+    public void revelaCampoVisao(Jogador jogador){
+        //Reseta visao
+        this.esconderTodasCelulas();
+        
+        int jogadorX = jogador.getPosicao()[0];
+        int jogadorY = jogador.getPosicao()[1];
+        
+        //Revela na direção esquerda
+        for(int x = jogadorX - 1; x>= 0; x--){
+            if(!revelarCelula(x, jogadorY)){
+                break;
+            }
+        }
+        
+        //Revela na direção direita
+        for(int x = jogadorX + 1; x<matriz[0].length; x++){
+            if(!revelarCelula(x, jogadorY)){
+                break;
+            }
+        }
+        
+        //Revela na direção cima
+        for(int y = jogadorY - 1; y >= 0; y--){
+            if(!revelarCelula(jogadorX, y)){
+                break;
+            }
+        }
+        
+        //Revela na direção baixo
+        for(int y = jogadorY + 1; y<matriz.length; y++){
+            if(!revelarCelula(jogadorX, y)){
+                break;
+            }   
+        }
+        
+        matriz[jogadorY][jogadorX].setRevelada(true);
+    }
+    
+    public boolean revelarCelula(int x, int y){
+        Celula celula = matriz[y][x];
+        celula.setRevelada(true);
+        
+        ObjetoMapa objeto = celula.getObjeto();
+        return (objeto instanceof Vazio);
+    }
     public void exibirMapa() {
         for (int i = 0; i < altura; i++) {
             for (int j = 0; j < largura; j++) {
                 System.out.print(matriz[i][j] + " ");
             }
             System.out.println();
+        }
+    }
+    
+    public void esconderTodasCelulas(){
+        for(int i = 0; i < altura; i++){
+            for (int j = 0; j < largura; j++) {
+                matriz[i][j].setRevelada(false);
+            }
         }
     }
     

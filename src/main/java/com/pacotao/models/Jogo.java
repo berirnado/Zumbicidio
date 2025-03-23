@@ -28,8 +28,7 @@ public class Jogo {
 
     public void iniciar() {
         //Instanciar mapa
-        //this.mapa = new Mapa("src/main/java/com/pacotao/Mapas/mapa_" + String.valueOf(this.random.nextInt(5) + 1) + ".txt", this.percepcao);
-        this.mapa = new Mapa("src/main/java/com/pacotao/Mapas/mapa_4.txt", this.percepcao); 
+        this.mapa = new Mapa("src/main/java/com/pacotao/Mapas/mapa_" + String.valueOf(this.random.nextInt(5) + 1) + ".txt", this.percepcao); 
     }
 
     public boolean moverJogador(String direcao) {

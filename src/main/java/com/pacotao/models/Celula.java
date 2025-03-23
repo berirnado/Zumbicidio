@@ -15,7 +15,7 @@ public class Celula {
 
     public Celula(ObjetoMapa objeto) {
         this.objeto = objeto;
-        this.revelada = true; // Por padrão, a célula não está revelada
+        this.revelada = false; // Por padrão, a célula não está revelada
     }
 
     public ObjetoMapa getObjeto() {
@@ -31,7 +31,9 @@ public class Celula {
     }
 
     public void setRevelada(boolean revelada) {
-        this.revelada = revelada;
+        if (this != null){
+            this.revelada = revelada;
+        }
     }
     
 }
