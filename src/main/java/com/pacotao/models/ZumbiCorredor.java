@@ -9,8 +9,11 @@ package com.pacotao.models;
  * @author Bernardo Robaina
  */
 public class ZumbiCorredor extends Zumbi{
+    
+    private static final String CAMINHO_IMAGEM = "src/main/java/com/pacotao/imagens/zumbi_corredor.png";
+    
     public ZumbiCorredor(int x, int y){
-        super(2, x, y);
+        super(2, CAMINHO_IMAGEM, x, y);
     }
     
     @Override

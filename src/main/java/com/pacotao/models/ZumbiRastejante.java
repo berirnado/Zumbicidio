@@ -10,8 +10,10 @@ package com.pacotao.models;
  */
 public class ZumbiRastejante extends Zumbi {
     
+    private static final String CAMINHO_IMAGEM = "src/main/java/com/pacotao/imagens/zumbi_rastejante.png";
+    
     public ZumbiRastejante(int x, int y){
-        super(1, x, y);
+        super(1,CAMINHO_IMAGEM, x, y);
     }
     
     @Override

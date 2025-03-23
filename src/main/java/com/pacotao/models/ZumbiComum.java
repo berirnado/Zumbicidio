@@ -7,12 +7,12 @@ package com.pacotao.models;
 /**
  *
  * @author Bernardo Robaina
- */
-public class ZumbiComum extends Zumbi {
-    
-    public ZumbiComum(int x, int y){
-        //Zumbi comum começa com 2 de hp
-        super(2, x, y);
+ */public class ZumbiComum extends Zumbi {
+
+    private static final String CAMINHO_IMAGEM = "src/main/java/com/pacotao/imagens/zumbi_comum.png";
+
+    public ZumbiComum(int x, int y) {
+        super(2, CAMINHO_IMAGEM, x, y); // Define a imagem específica do Zumbi Comum
     }
     
     @Override

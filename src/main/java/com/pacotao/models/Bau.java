@@ -29,7 +29,7 @@ public class Bau extends ObjetoMapa{
     private Random random = new Random();
     
     public Bau(int x, int y){
-        super("B", "src/", x, y);
+        super("B", "src/main/java/com/pacotao/imagens/bau.png", x, y);
     }
     
     public Item abrir(){

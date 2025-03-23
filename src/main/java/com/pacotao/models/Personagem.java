@@ -10,6 +10,7 @@ package com.pacotao.models;
  */
 public abstract class Personagem extends ObjetoMapa {
     protected int saude; // HP do personagem
+    
 
     public Personagem(String simbolo, String caminhoImagem, int saude, int x, int y) {
         super(simbolo, caminhoImagem, x, y);
