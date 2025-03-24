@@ -16,6 +16,11 @@ public abstract class ObjetoMapa {
     private ImageIcon imagem; // Imagem que representa o objeto na tela
     protected int x, y; // Posição do objeto no mapa
 
+    public ObjetoMapa(String simbolo, int x, int y) {
+        this.simbolo = simbolo;
+        this.x = x;
+        this.y = y;
+    }
     public ObjetoMapa(String simbolo, String caminhoImagem, int x, int y) {
         this.simbolo = simbolo;
         this.x = x;
@@ -60,4 +65,6 @@ public abstract class ObjetoMapa {
         
         return new ImageIcon(tratada);
     }
+     
+    public abstract String gerarImagem();
 }

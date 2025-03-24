@@ -12,21 +12,30 @@ import java.util.*;
  * @author Bernardo Robaina
  */
 
-public class Jogador extends Personagem {
+    public class Jogador extends Personagem {
     private int percepcao;
     private Mapa mapa;
     private JogoController jogoController;
     private List<Item> listItens;
+    protected Random random;
     
     public Jogador(int saude, int x, int y, int percepcao, Mapa mapa) {
-        super("J", "caminhoImagem", saude, x, y);
+        super("J", saude, x, y);
         this.mapa = mapa;
         this.percepcao = percepcao;
+        this.random = new Random();
         this.listItens = new ArrayList<Item>();
+        this.setImagem(this.gerarImagem());
     }
     
     public void setJogoController(JogoController jogoController){
         this.jogoController = jogoController;
+    }
+    
+    @Override
+    public String gerarImagem(){
+        String retorno = "src/main/java/com/pacotao/imagens/personagem" + String.valueOf(this.random.nextInt(3) + 1) + ".png";
+        return retorno;
     }
 
     /**

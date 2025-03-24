@@ -10,6 +10,13 @@ package com.pacotao.models;
  */
 public class Parede extends ObjetoMapa{
     public Parede(int x, int y){
-        super("P", "caminhoImagemParede", x, y);
+        super("P", x, y);
+        this.setImagem(this.gerarImagem());
+    }
+    
+    @Override
+    public String gerarImagem(){
+        String stringRetorno = "src/main/java/com/pacotao/imagens/parede_tijolo.png";
+        return stringRetorno;
     }
 }

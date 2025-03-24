@@ -36,25 +36,20 @@ public class TabuleiroPanel extends JPanel{
                 int y = i * tamanhoCelula; // Posição Y da célula
 
                 if (celula.isRevelada()) {
-                    // Desenha a imagem do objeto na célula
-                    //ImageIcon imagem = celula.getObjeto().getImagem();
-                    //imagem.paIcon(this, g, x, y);
-                    Color cor = getCorPorSimbolo(celula.getObjeto().getSimbolo());
-                    if (celula.getObjeto() instanceof Jogador && !primeiroRender){
-                        g.setColor(Color.GRAY);
-                        g.fillRect(x, y, tamanhoCelula, tamanhoCelula); // Pinta o quadrado
-                    }else{
-                        g.setColor(cor);
-                        g.fillRect(x, y, tamanhoCelula, tamanhoCelula); // Pinta o quadrado   
-                    }
+                if (celula.getObjeto() != null && celula.getObjeto().getImagem() != null) {
+                    ImageIcon concreto = new ImageIcon("src/main/java/com/pacotao/imagens/concreto1.png");
+                    g.drawImage(concreto.getImage(), x, y, tamanhoCelula, tamanhoCelula, this);
+                    Image imagem = celula.getObjeto().getImagem().getImage();
+                    g.drawImage(imagem, x, y, tamanhoCelula, tamanhoCelula, this);
                 } else {
-                    // Desenha uma imagem padrão para células não reveladas
-                    //ImageIcon imagemOculta = new ImageIcon(getClass().getClassLoader().getResource("imagens/oculto.png"));
-                    //imagemOculta.paintIcon(this, g, x, y);
-                    g.setColor(Color.LIGHT_GRAY);
+                    Color cor = getCorPorSimbolo(celula.getObjeto().getSimbolo());
+                    g.setColor(cor);
                     g.fillRect(x, y, tamanhoCelula, tamanhoCelula);
-                    
                 }
+            } else {
+                g.setColor(Color.LIGHT_GRAY);
+                g.fillRect(x, y, tamanhoCelula, tamanhoCelula);
+            }
 
                 // Desenha bordas para visualização (opcional)
                 g.setColor(Color.BLACK);
@@ -66,8 +61,8 @@ public class TabuleiroPanel extends JPanel{
             // Desenha o jogador
             int jogadorX = jogo.getJogador().getPosicao()[0] * tamanhoCelula;
             int jogadorY = jogo.getJogador().getPosicao()[1] * tamanhoCelula;
-            g.setColor(Color.WHITE); // Cor do jogador
-            g.fillRect(jogadorX, jogadorY, tamanhoCelula, tamanhoCelula);
+            Image imagem = jogo.getJogador().getImagem().getImage();
+            g.drawImage(imagem, jogadorX, jogadorY, tamanhoCelula, tamanhoCelula, this);
         }else{
             primeiroRender = false;
         }

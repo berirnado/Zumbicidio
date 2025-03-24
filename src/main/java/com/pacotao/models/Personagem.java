@@ -11,8 +11,8 @@ package com.pacotao.models;
 public abstract class Personagem extends ObjetoMapa {
     protected int saude; // HP do personagem
 
-    public Personagem(String simbolo, String caminhoImagem, int saude, int x, int y) {
-        super(simbolo, caminhoImagem, x, y);
+    public Personagem(String simbolo, int saude, int x, int y) {
+        super(simbolo, x, y);
         this.saude = saude;
     }
 

@@ -11,11 +11,18 @@ package com.pacotao.models;
 public class ZumbiGigante extends Zumbi{
     public ZumbiGigante(int x, int y){
         super(3, x, y);
+        this.setImagem(gerarImagem());
     }
     
     @Override
     public void mover(Personagem personagem){
         //TODO: Zumbi Gigante não se move
         System.out.println("Zumbi Gigante não se move");
+    }
+    
+    @Override
+    public String gerarImagem(){
+        String stringRetorno = "src/main/java/com/pacotao/imagens/zumbi_gigante.png";
+        return stringRetorno;
     }
 }

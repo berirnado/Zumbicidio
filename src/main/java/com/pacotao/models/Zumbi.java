@@ -14,7 +14,7 @@ public abstract class Zumbi extends Personagem {
     public static List<Zumbi> listZumbi = new ArrayList<>();
     
     public Zumbi(int saude, int x, int y){
-        super("Z", "caminhoImagemZumbi", saude, x, y);
+        super("Z", saude, x, y);
     }
     
     public abstract void mover(Personagem personagem);
