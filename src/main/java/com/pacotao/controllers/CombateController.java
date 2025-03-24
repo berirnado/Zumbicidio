@@ -70,15 +70,25 @@ public class CombateController {
     }
     public void finalizarCombate(){
         if(this.jogador.getSaude() <= 0){
-            combateView.mostrarResultado("Você perdeu!", "Derrota");
+            combateView.mostrarResultado("Você perdeu!", "Derrota", true);
         }else if (this.zumbi.getSaude() <= 0) {
-            combateView.mostrarResultado("Você venceu!", "Vitória");
+            combateView.mostrarResultado("Você venceu!", "Vitória", true);
             this.zumbi.removeZumbi();
+            
+            
+            System.out.println("Finalizar");
+            //Retira imagem de zumbi da matriz
+            int zumbiX = zumbi.getPosicao()[1];
+            int zumbiY = zumbi.getPosicao()[0];
+            Celula[][] matrizMapa = this.jogoController.getMatrizMapa();
+            matrizMapa[zumbiX][zumbiY].setObjeto(new Vazio(zumbiX, zumbiY));
+            this.jogoController.getTabuleiro().repaint();
         }
     }
     
     public void rodadaZumbi(){
         //ROLAR DADO
+        combateView.mostrarResultado("Vez do zumbi!", "Zumbi", false);
         int resultado = rolarDado();
         if(resultado > this.jogador.getPercepcao()){
             this.jogador.setSaude(this.jogador.getSaude() - 1);

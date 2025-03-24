@@ -26,10 +26,11 @@ public class MainFrame extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new BackgroundMenuPanel());
 
         // Configuração do CardLayout
-        cardLayout = new CardLayout();
-        mainPanel = new JPanel(cardLayout);
+        mainPanel = new JPanel(cardLayout = new CardLayout()); // Panel principal para navegar entre telas
+        mainPanel.setOpaque(false);
 
         // Adiciona as telas ao CardLayout
         MenuPanel painelMenu = new MenuPanel(this);
@@ -45,6 +46,14 @@ public class MainFrame extends JFrame{
     // Método para navegar entre telas
     public void mostraTela(String nomeTela) {
         cardLayout.show(mainPanel, nomeTela);
+    }
+    
+    public void mostraMensagem(String mensagem){
+        // Criar a mensagem para o jogador
+        String texto = "<html><h2>" + mensagem + "</h2></html>";
+
+        // Mostrar a mensagem ao jogador
+        JOptionPane.showMessageDialog(this, texto, "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }
     
     // Método para criar e exibir o TabuleiroPanel

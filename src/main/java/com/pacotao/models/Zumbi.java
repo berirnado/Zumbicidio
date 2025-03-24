@@ -17,7 +17,7 @@ public abstract class Zumbi extends Personagem {
         super("Z", saude, x, y);
     }
     
-    public abstract void mover(Personagem personagem);
+    public abstract void mover(Personagem personagem, Celula[][] matriz);
     
     public List<Zumbi> listarZumbis(){
         return listZumbi;

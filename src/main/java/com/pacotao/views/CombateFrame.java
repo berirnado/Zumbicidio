@@ -134,18 +134,17 @@ public class CombateFrame extends JFrame{
         vidaZumbiLabel.setIcon(gerarBarraDeVida(combateController.getVidaZumbi(), 3));
     }
     
-    public void mostrarResultado(String mensagem, String tipoResultado) {
+    public void mostrarResultado(String mensagem, String tipoResultado, boolean fimCombate) {
     // Criar a mensagem para o jogador
     String texto = "<html><h2>" + mensagem + "</h2></html>";
     
     // Mostrar a mensagem ao jogador
     JOptionPane.showMessageDialog(this, texto, tipoResultado, JOptionPane.INFORMATION_MESSAGE);
     
-    // Você pode adicionar mais ações aqui, como desabilitar botões ou fechar a janela após o combate
-    // Por exemplo, fechar a janela de combate após o resultado
-    dispose();  // Fecha a janela atual do combate
+    if(fimCombate){
+        dispose();  
+    }
     
-    // Ou, dependendo do tipo de jogo, pode ser necessário reiniciar o jogo ou retornar ao menu inicial
 }
     
     // Carregar imagens dos personagens

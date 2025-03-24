@@ -16,6 +16,7 @@ import java.util.*;
 public class JogoController {
     private Jogo jogo;
     private Jogador jogador;
+    private MainFrame mainFrame;
     
     private TabuleiroPanel tabuleiroPanel;
     private InventarioPanel inventarioPanel;
@@ -34,6 +35,8 @@ public class JogoController {
         this.jogador = jogo.getJogador();
         this.jogador.setJogoController(this);
         
+        this.mainFrame = frame;
+        
         this.ehDebug = ehDebug;
         
         frame.criaGamePanel(jogo, this);
@@ -51,13 +54,33 @@ public class JogoController {
         }
     }
     
+    public Celula[][] getMatrizMapa(){
+        return this.jogo.getMapa().getMatriz();
+    }
+    
+    public Mapa getMapa(){
+        return this.jogo.getMapa();
+    }
+    
+    public TabuleiroPanel getTabuleiro(){
+        return this.tabuleiroPanel;
+    }
+    
     public void gerenciaMovimentoJogador(char direcao){
         if (jogador.mover(direcao)){
             if(!ehDebug){
                 jogo.getMapa().revelaCampoVisao(this.jogo.getJogador());   
             }
             checkForCombat();
+            mainFrame.mostraMensagem("Zumbis se movendo...");
+            gerenciaMovimentoZumbis();
             tabuleiroPanel.repaint();
+        }
+    }
+    
+    public void gerenciaMovimentoZumbis(){
+        for(Zumbi zumbi : jogo.getZumbis()){
+            zumbi.mover(jogador, jogo.getMapa().getMatriz());
         }
     }
     

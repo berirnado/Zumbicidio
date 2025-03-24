@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 public class DificuldadePanel extends JPanel {
     public DificuldadePanel(MainFrame frame, MenuPanel menu){
         setLayout(new GridBagLayout());
+        setOpaque(false);
+        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -45,3 +47,24 @@ public class DificuldadePanel extends JPanel {
         frame.mostraTela("Menu");
     }
 }
+
+// Classe interna para o painel de fundo
+    class BackgroundMenuPanel extends JPanel {
+        private Image backgroundImage;
+
+        public BackgroundMenuPanel() {
+            try {
+                backgroundImage = new ImageIcon("src/main/java/com/pacotao/imagens/backgroundmenu.png").getImage();
+            } catch (Exception e) {
+                System.err.println("Erro ao carregar a imagem de fundo: " + e.getMessage());
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (backgroundImage != null) {
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        }
+    }

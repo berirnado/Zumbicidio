@@ -22,6 +22,7 @@ com\pacotao\models\Arma.class
 com\pacotao\views\BackgroundPanel.class
 com\pacotao\views\CombateFrame.class
 com\pacotao\models\Bau.class
+com\pacotao\views\BackgroundMenuPanel.class
 com\pacotao\models\Parede.class
 com\pacotao\views\MenuPanel.class
 com\pacotao\models\Vazio.class

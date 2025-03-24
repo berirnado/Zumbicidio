@@ -15,9 +15,8 @@ public class ZumbiGigante extends Zumbi{
     }
     
     @Override
-    public void mover(Personagem personagem){
-        //TODO: Zumbi Gigante não se move
-        System.out.println("Zumbi Gigante não se move");
+    public void mover(Personagem personagem, Celula[][] matriz){
+        //ZUMBI GIGANTE NÃO SE MOVE
     }
     
     @Override

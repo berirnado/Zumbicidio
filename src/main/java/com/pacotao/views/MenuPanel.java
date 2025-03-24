@@ -24,13 +24,15 @@ public class MenuPanel extends JPanel {
     public MenuPanel(MainFrame frame) {
         // Painel principal com GridBagLayout para centralizar
         setLayout(new GridBagLayout());
+        setOpaque(false);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 10, 10); // Espaçamento
         
         //Título
-        JLabel label = new JLabel("Zumbicídio");
+        JLabel label = new JLabel();
+        label.setIcon(new ImageIcon("src/main/java/com/pacotao/imagens/logo.png"));
         label.setFont(new Font("Serif", Font.BOLD, 50));
         add(label, gbc);
 
