@@ -26,4 +26,8 @@ public abstract class Zumbi extends Personagem {
     public void adicionaZumbi(Zumbi zumbi){
         listZumbi.add(zumbi);
     }
+    
+    public void removeZumbi(){
+        listZumbi.remove(this);
+    }
 }

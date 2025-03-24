@@ -19,6 +19,7 @@ com\pacotao\models\Mapa.class
 com\pacotao\models\Item.class
 com\pacotao\models\Personagem.class
 com\pacotao\models\Arma.class
+com\pacotao\views\BackgroundPanel.class
 com\pacotao\views\CombateFrame.class
 com\pacotao\models\Bau.class
 com\pacotao\models\Parede.class

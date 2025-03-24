@@ -100,6 +100,42 @@ import java.util.*;
         jogoController.atualizaInventario();
     }
     
+    public Arma getTacoBaseball(){
+        if(!listItens.isEmpty()){
+            for(int i = 0; i < listItens.size(); i++){
+                if(listItens.get(i) instanceof Arma arma){
+                    if(arma.getNome() == "Taco"){
+                        return arma;
+                    }
+                }
+            }
+            return null;
+        }else{
+            return null;
+        }
+    }
+    
+    public Arma getRevolver(){
+        if(!listItens.isEmpty()){
+            for(int i = 0; i < listItens.size(); i++){
+                if(listItens.get(i) instanceof Arma arma){
+                    if(arma.getNome() == "Revolver"){
+                        return arma;
+                    }
+                }
+            }
+            return null;
+        }else{
+            return null;
+        }
+    }
+    
+    public int getPercepcao(){
+        return this.percepcao;
+    }
+    
+    
+    
     public boolean jaTemRevolver(){
         if(!listItens.isEmpty()){
             for(int i = 0; i < listItens.size(); i++){

@@ -42,7 +42,7 @@ public class JogoController {
     public void checkForCombat() {
         for (Zumbi zumbi : jogo.getZumbis()) {
             if (jogador.getPosicao()[0] == zumbi.getPosicao()[0] && 
-                jogador.getPosicao()[1] == zumbi.getPosicao()[1]) 
+                jogador.getPosicao()[1] == zumbi.getPosicao()[1])
             {
                 System.out.println("Zumbi encontrado");
                 this.combateController = new CombateController(this, jogador, zumbi);

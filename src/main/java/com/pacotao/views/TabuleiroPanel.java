@@ -39,8 +39,10 @@ public class TabuleiroPanel extends JPanel{
                 if (celula.getObjeto() != null && celula.getObjeto().getImagem() != null) {
                     ImageIcon concreto = new ImageIcon("src/main/java/com/pacotao/imagens/concreto1.png");
                     g.drawImage(concreto.getImage(), x, y, tamanhoCelula, tamanhoCelula, this);
-                    Image imagem = celula.getObjeto().getImagem().getImage();
-                    g.drawImage(imagem, x, y, tamanhoCelula, tamanhoCelula, this);
+                    if(!(celula.getObjeto() instanceof Jogador)){
+                        Image imagem = celula.getObjeto().getImagem().getImage();
+                        g.drawImage(imagem, x, y, tamanhoCelula, tamanhoCelula, this);
+                    }
                 } else {
                     Color cor = getCorPorSimbolo(celula.getObjeto().getSimbolo());
                     g.setColor(cor);
@@ -57,15 +59,13 @@ public class TabuleiroPanel extends JPanel{
                 
             }
         }
-        if(!primeiroRender){
-            // Desenha o jogador
-            int jogadorX = jogo.getJogador().getPosicao()[0] * tamanhoCelula;
-            int jogadorY = jogo.getJogador().getPosicao()[1] * tamanhoCelula;
-            Image imagem = jogo.getJogador().getImagem().getImage();
-            g.drawImage(imagem, jogadorX, jogadorY, tamanhoCelula, tamanhoCelula, this);
-        }else{
-            primeiroRender = false;
-        }
+        
+        // Desenha o jogador
+        int jogadorX = jogo.getJogador().getPosicao()[0] * tamanhoCelula;
+        int jogadorY = jogo.getJogador().getPosicao()[1] * tamanhoCelula;
+        Image imagem = jogo.getJogador().getImagem().getImage();
+        g.drawImage(imagem, jogadorX, jogadorY, tamanhoCelula, tamanhoCelula, this);
+        
     }
         
     private Color getCorPorSimbolo(String simbolo) {
