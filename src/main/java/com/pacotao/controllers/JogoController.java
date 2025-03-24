@@ -42,16 +42,17 @@ public class JogoController {
         frame.criaGamePanel(jogo, this);
     }
     
-    public void checkForCombat() {
+    public boolean checkForCombat(boolean jogadorIniciou) {
         for (Zumbi zumbi : jogo.getZumbis()) {
             if (jogador.getPosicao()[0] == zumbi.getPosicao()[0] && 
                 jogador.getPosicao()[1] == zumbi.getPosicao()[1])
             {
                 System.out.println("Zumbi encontrado");
-                this.combateController = new CombateController(this, jogador, zumbi);
-                break;
+                this.combateController = new CombateController(this, jogador, zumbi, jogadorIniciou);
+                return true;
             }
         }
+        return false;
     }
     
     public Celula[][] getMatrizMapa(){
@@ -71,16 +72,18 @@ public class JogoController {
             if(!ehDebug){
                 jogo.getMapa().revelaCampoVisao(this.jogo.getJogador());   
             }
-            checkForCombat();
-            mainFrame.mostraMensagem("Zumbis se movendo...");
-            gerenciaMovimentoZumbis();
-            tabuleiroPanel.repaint();
+            if(!checkForCombat(true)){
+                mainFrame.mostraMensagem("Zumbis se movendo...");
+                gerenciaMovimentoZumbis();
+                tabuleiroPanel.repaint();
+            }
         }
     }
     
     public void gerenciaMovimentoZumbis(){
         for(Zumbi zumbi : jogo.getZumbis()){
             zumbi.mover(jogador, jogo.getMapa().getMatriz());
+            checkForCombat(false);
         }
     }
     

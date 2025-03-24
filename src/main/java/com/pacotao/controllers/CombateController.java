@@ -17,11 +17,13 @@ public class CombateController {
     private Jogador jogador;
     private Zumbi zumbi;
     private CombateFrame combateView;
+    private boolean jogadorIniciou;
     
-    public CombateController(JogoController jogoController, Jogador jogador, Zumbi zumbi){
+    public CombateController(JogoController jogoController, Jogador jogador, Zumbi zumbi, boolean jogadorIniciou){
         this.jogoController = jogoController;
         this.jogador = jogador;
         this.zumbi = zumbi;
+        this.jogadorIniciou = jogadorIniciou;
         
         iniciaCombate();
         
@@ -31,6 +33,9 @@ public class CombateController {
         CombateFrame combateView = new CombateFrame(this);
         combateView.setVisible(true);
         this.combateView = combateView;
+        if(!jogadorIniciou){
+            rodadaZumbi();
+        }
     }
     
     public void atacarZumbi(boolean usaArma){
@@ -110,7 +115,9 @@ public class CombateController {
     }
     
     public void cura(){
-        this.jogador.curar();
+        if(!this.jogador.curar()){
+            combateView.mostrarResultado("Você não tem medicamento", "Alerta", false);
+        };
         rodadaZumbi();
     }
     
