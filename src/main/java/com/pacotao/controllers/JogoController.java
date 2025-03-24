@@ -55,6 +55,31 @@ public class JogoController {
         return false;
     }
     
+    public boolean checkFinalDoJogo(){
+        if(jogo.getZumbis().size() < 1){
+            TelaFimDeJogo telaFimDeJogo = new TelaFimDeJogo(this, true);
+            mainFrame.add(telaFimDeJogo, "TelaFimDeJogo");
+            mainFrame.mostraTela("TelaFimDeJogo");
+            return true;
+        }else if(jogador.getSaude() < 1){
+            TelaFimDeJogo telaFimDeJogo = new TelaFimDeJogo(this, false);
+            mainFrame.add(telaFimDeJogo, "TelaFimDeJogo");
+            mainFrame.mostraTela("TelaFimDeJogo");
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void reiniciarJogo() {
+        this.jogo.resetarEstadoInicial();
+    }
+    
+    public void novoJogo(){
+        
+    }
+        
+    
     public Celula[][] getMatrizMapa(){
         return this.jogo.getMapa().getMatriz();
     }
@@ -78,6 +103,7 @@ public class JogoController {
                 tabuleiroPanel.repaint();
             }
         }
+        checkFinalDoJogo();
     }
     
     public void gerenciaMovimentoZumbis(){

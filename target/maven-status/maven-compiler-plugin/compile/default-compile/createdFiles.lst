@@ -15,6 +15,7 @@ com\pacotao\models\ZumbiGigante.class
 com\pacotao\ZumbicidioJogo.class
 com\pacotao\models\Jogador.class
 com\pacotao\views\GamePanel.class
+com\pacotao\views\TelaFimDeJogo.class
 com\pacotao\models\Mapa.class
 com\pacotao\models\Item.class
 com\pacotao\models\Personagem.class

@@ -20,6 +20,7 @@ public class Jogo {
     public boolean ehDebug;
     protected Random random;
     private final ZumbiComum zumbi;
+    private String mapaString;
 
     public Jogo(int percepcao, boolean ehDebug) {
         this.turnoJogador = true;
@@ -31,7 +32,8 @@ public class Jogo {
 
     public void iniciar() {
         //Instanciar mapa
-        this.mapa = new Mapa("src/main/java/com/pacotao/Mapas/mapa_" + String.valueOf(this.random.nextInt(5) + 1) + ".txt", this.percepcao, this.ehDebug); 
+        this.mapaString = "src/main/java/com/pacotao/Mapas/mapa_" + String.valueOf(this.random.nextInt(5) + 1) + ".txt";
+        this.mapa = new Mapa(mapaString, this.percepcao, this.ehDebug); 
     }
     
     public boolean jogadorDerrotado() {
@@ -52,6 +54,15 @@ public class Jogo {
 
     public List<Zumbi> getZumbis() {
         return zumbi.listarZumbis();
+    }
+    
+    public void resetarEstadoInicial() {
+        // Reinicia jogador
+        jogador.getPosicao()[0] = 0;
+        jogador.setSaude(5);
+        new Mapa(this.mapaString, this.percepcao, this.ehDebug);
+        
+        
     }
 }
 

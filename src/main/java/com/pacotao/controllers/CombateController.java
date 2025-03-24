@@ -44,13 +44,18 @@ public class CombateController {
             if(arma != null){
                 arma.setMunicao(arma.getMunicao() - 1);
                 if(this.zumbi instanceof ZumbiCorredor){
-                    combateView.atualizarBarrasDeVida();
+                    combateView.mostrarResultado("Não é possível acertar um zumbi corredor com a arma", "Aviso", false);
+                    return;
                 }
                 this.zumbi.setSaude(this.getVidaZumbi() - 2);
                 combateView.atualizarBarrasDeVida();
             }
         }else {
             if(this.jogador.getTacoBaseball() != null){
+                if(this.zumbi instanceof ZumbiGigante){
+                    combateView.mostrarResultado("Não é possivel atacar um zumbi gigante com as mãos", "Aviso", false);
+                    return;
+                }
                 this.zumbi.setSaude(this.getVidaZumbi() - 2);
                 combateView.mostrarResultadoDado(6, "Acerto crítico! 2 de dano no zumbi");
             }else{
@@ -139,5 +144,9 @@ public class CombateController {
     
     public Zumbi getZumbi(){
         return this.zumbi;
+    }
+    
+    public void reiniciarJogo(){
+        jogoController.reiniciarJogo();
     }
 }

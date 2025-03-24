@@ -87,6 +87,10 @@ import java.util.*;
         return this.listItens;
     }
     
+    public void limparListaItens(){
+        listItens = new ArrayList<Item>();
+    }
+    
     public void coletarItem(Item item){
         if(item instanceof Arma){
             if(item.getNome() == "Revolver"){
